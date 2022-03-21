@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <java.version>14</java.version>
+        <java.version>17</java.version>
         <spring-boot.version>2.6.3</spring-boot.version>
         <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
         <lombok.version>1.18.22</lombok.version>
@@ -135,6 +135,16 @@
                 <artifactId>kafka-model</artifactId>
                 <version>${kafka-hq.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.twitter.reporter</groupId>
+                <artifactId>kafka-admin</artifactId>
+                <version>${kafka-hq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.twitter.reporter</groupId>
+                <artifactId>kafka-producer</artifactId>
+                <version>${kafka-hq.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -149,6 +159,20 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
 
         <pluginManagement>
